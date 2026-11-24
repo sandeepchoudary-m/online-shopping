@@ -1,4 +1,0 @@
-Order_ID,Customer_ID,Customer_Name,Customer_Type,Date,Subtotal,Product_Discount,Member_Discount,Taxable_Amount,GST_18%,Grand_Total,Items_Summary
-ORD-1001,C001,Rahul Sharma,Student,2026-11-19 15:23:04,52000.00,2600.00,2470.00,46930.00,8447.40,55377.40,Dell Inspiron Laptop x1
-ORD-1002,C001,Rahul Sharma,Student,2026-11-19 15:23:22,52000.00,2600.00,2470.00,46930.00,8447.40,55377.40,Dell Inspiron Laptop x1
-ORD-1003,C001,Rahul Sharma,Student,2026-11-19 15:25:13,52000.00,2600.00,2470.00,46930.00,8447.40,55377.40,Dell Inspiron Laptop x1
