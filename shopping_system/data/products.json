@@ -1,0 +1,225 @@
+[
+    {
+        "type": "Electronics",
+        "product_id": "P101",
+        "name": "Dell Inspiron Laptop",
+        "category": "Electronics",
+        "price": 52000.0,
+        "stock": 19,
+        "keywords": [
+            "laptop",
+            "computer",
+            "dell",
+            "intel",
+            "work"
+        ],
+        "discount_rate": 0.05,
+        "is_sellable": true,
+        "details": {
+            "warranty_months": 24
+        },
+        "warranty_months": 24
+    },
+    {
+        "type": "Electronics",
+        "product_id": "P102",
+        "name": "Boat Rockerz Headphones",
+        "category": "Electronics",
+        "price": 1499.0,
+        "stock": 15,
+        "keywords": [
+            "headphones",
+            "boat",
+            "audio",
+            "bluetooth",
+            "music"
+        ],
+        "discount_rate": 0.05,
+        "is_sellable": true,
+        "details": {
+            "warranty_months": 12
+        },
+        "warranty_months": 12
+    },
+    {
+        "type": "Electronics",
+        "product_id": "P103",
+        "name": "Samsung Galaxy Smartphone",
+        "category": "Electronics",
+        "price": 24999.0,
+        "stock": 10,
+        "keywords": [
+            "mobile",
+            "phone",
+            "samsung",
+            "galaxy",
+            "5g"
+        ],
+        "discount_rate": 0.05,
+        "is_sellable": true,
+        "details": {
+            "warranty_months": 12
+        },
+        "warranty_months": 12
+    },
+    {
+        "type": "Clothing",
+        "product_id": "P104",
+        "name": "Casual Cotton T-Shirt",
+        "category": "Clothing",
+        "price": 799.0,
+        "stock": 20,
+        "keywords": [
+            "tshirt",
+            "cotton",
+            "clothing",
+            "casual",
+            "shirt"
+        ],
+        "discount_rate": 0.15,
+        "is_sellable": true,
+        "details": {
+            "size": "L"
+        },
+        "size": "L"
+    },
+    {
+        "type": "Clothing",
+        "product_id": "P105",
+        "name": "Slim Fit Denim Jeans",
+        "category": "Clothing",
+        "price": 1599.0,
+        "stock": 12,
+        "keywords": [
+            "jeans",
+            "denim",
+            "pants",
+            "clothing",
+            "blue"
+        ],
+        "discount_rate": 0.15,
+        "is_sellable": true,
+        "details": {
+            "size": "32"
+        },
+        "size": "32"
+    },
+    {
+        "type": "Clothing",
+        "product_id": "P106",
+        "name": "Puma Running Shoes",
+        "category": "Clothing",
+        "price": 2899.0,
+        "stock": 6,
+        "keywords": [
+            "shoes",
+            "running",
+            "sports",
+            "puma",
+            "footwear"
+        ],
+        "discount_rate": 0.15,
+        "is_sellable": true,
+        "details": {
+            "size": "9"
+        },
+        "size": "9"
+    },
+    {
+        "type": "Grocery",
+        "product_id": "P107",
+        "name": "Amul Fresh Full Cream Milk",
+        "category": "Grocery",
+        "price": 66.0,
+        "stock": 25,
+        "keywords": [
+            "milk",
+            "dairy",
+            "amul",
+            "fresh",
+            "grocery"
+        ],
+        "discount_rate": 0.3,
+        "is_sellable": true,
+        "details": {
+            "expiry_date": "2026-11-23",
+            "days_left": 4,
+            "is_expired": false
+        },
+        "expiry_date": "2026-11-23",
+        "days_left": 4,
+        "is_expired": false
+    },
+    {
+        "type": "Grocery",
+        "product_id": "P108",
+        "name": "Fortune Premium Basmati Rice (5kg)",
+        "category": "Grocery",
+        "price": 450.0,
+        "stock": 18,
+        "keywords": [
+            "rice",
+            "grain",
+            "basmati",
+            "fortune",
+            "food"
+        ],
+        "discount_rate": 0.0,
+        "is_sellable": true,
+        "details": {
+            "expiry_date": "2027-06-30",
+            "days_left": 223,
+            "is_expired": false
+        },
+        "expiry_date": "2027-06-30",
+        "days_left": 223,
+        "is_expired": false
+    },
+    {
+        "type": "Grocery",
+        "product_id": "P109",
+        "name": "Epigamia Greek Yogurt",
+        "category": "Grocery",
+        "price": 85.0,
+        "stock": 14,
+        "keywords": [
+            "yogurt",
+            "dairy",
+            "epigamia",
+            "snack"
+        ],
+        "discount_rate": 0.3,
+        "is_sellable": true,
+        "details": {
+            "expiry_date": "2026-11-24",
+            "days_left": 5,
+            "is_expired": false
+        },
+        "expiry_date": "2026-11-24",
+        "days_left": 5,
+        "is_expired": false
+    },
+    {
+        "type": "Grocery",
+        "product_id": "P110",
+        "name": "Artisan Sourdough Loaf (Sample Expired)",
+        "category": "Grocery",
+        "price": 120.0,
+        "stock": 3,
+        "keywords": [
+            "bread",
+            "bakery",
+            "sourdough"
+        ],
+        "discount_rate": 0.0,
+        "is_sellable": false,
+        "details": {
+            "expiry_date": "2026-11-10",
+            "days_left": -9,
+            "is_expired": true
+        },
+        "expiry_date": "2026-11-10",
+        "days_left": -9,
+        "is_expired": true
+    }
+]

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Owner: Member 6 (UI Layout) and Member 2 (Customer Profile UI) -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEase - Online Shopping Management System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="navbar">
+        <div class="nav-brand">
+            <span class="logo-icon">&#128722;</span>
+            <div>
+                <h1>ShopEase</h1>
+                <p class="subtitle">Online Shopping Management System</p>
+            </div>
+        </div>
+
+        <!-- ACTIVE CUSTOMER PROFILE BADGE -->
+        <div class="nav-user">
+            <div class="user-card" id="userCard">
+                <span class="user-icon">&#128100;</span>
+                <div class="user-details">
+                    <div class="user-name" id="currentCustomerName">Rahul Sharma</div>
+                    <div class="user-meta">
+                        <span class="badge badge-member" id="currentCustomerType">Student Member</span>
+                        <span class="badge badge-discount" id="currentCustomerDiscount">5% Off</span>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-outline" id="btnSwitchUser" onclick="openCustomerModal()">Switch / Register</button>
+            <button class="btn btn-cart-toggle" onclick="toggleCartDrawer()">
+                &#128722; Cart <span class="cart-count-badge" id="cartCountBadge">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- LIVE NOTIFICATION / ERROR ALERT BANNER (For Viva Demos) -->
+    <div class="alert-container" id="alertContainer">
+        <div class="alert alert-error" id="errorAlert" style="display: none;">
+            <span class="alert-icon">&#9888;</span>
+            <span class="alert-msg" id="errorMessage">Error text</span>
+            <button class="alert-close" onclick="dismissAlert('errorAlert')">&times;</button>
+        </div>
+        <div class="alert alert-success" id="successAlert" style="display: none;">
+            <span class="alert-icon">&#10004;</span>
+            <span class="alert-msg" id="successMessage">Success text</span>
+            <button class="alert-close" onclick="dismissAlert('successAlert')">&times;</button>
+        </div>
+    </div>
+
+    <!-- MAIN APP CONTAINER -->
+    <main class="main-container">
+
+        <!-- TAB NAVIGATION -->
+        <nav class="tabs-nav">
+            <button class="tab-btn active" id="tabCatalogBtn" onclick="switchTab('catalog')">
+                &#128269; Product Catalogue
+            </button>
+            <button class="tab-btn" id="tabOrdersBtn" onclick="switchTab('orders')">
+                &#128221; Order History
+            </button>
+            <button class="tab-btn" id="tabAdminBtn" onclick="switchTab('admin')">
+                &#9881; Admin Stock Management
+            </button>
+        </nav>
+
+        <!-- =================================================================== -->
+        <!-- TAB 1: PRODUCT CATALOGUE & CART VIEW -->
+        <!-- =================================================================== -->
+        <section class="tab-content active" id="tabCatalog">
+            <!-- SEARCH AND FILTER CONTROLS BAR -->
+            <div class="filter-bar">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">&#128269;</span>
+                    <input type="text" id="searchInput" placeholder="Search by name, category, or keyword (e.g. laptop, cotton, boat)..." oninput="handleSearch()">
+                </div>
+                <div class="category-select-wrapper">
+                    <label for="categoryFilter">Category:</label>
+                    <select id="categoryFilter" onchange="handleSearch()">
+                        <option value="All">All Categories</option>
+                    </select>
+                </div>
+                <button class="btn btn-secondary btn-sm" onclick="resetFilters()">Reset</button>
+            </div>
+
+            <!-- LAYOUT: CATALOG GRID + CART PANEL -->
+            <div class="catalog-layout">
+                <!-- PRODUCT CARDS GRID -->
+                <div class="products-section">
+                    <div class="section-header">
+                        <h2>Available Products</h2>
+                        <span class="results-count" id="resultsCount">Loading products...</span>
+                    </div>
+                    <div class="products-grid" id="productsGrid">
+                        <!-- Rendered dynamically by app.js -->
+                    </div>
+                </div>
+
+                <!-- CART SIDEBAR PANEL -->
+                <aside class="cart-panel" id="cartPanel">
+                    <div class="cart-header">
+                        <h3>&#128722; Your Shopping Cart</h3>
+                        <button class="btn btn-text btn-sm" onclick="clearCart()">Clear Cart</button>
+                    </div>
+
+                    <div class="cart-items" id="cartItemsContainer">
+                        <!-- Rendered dynamically by app.js -->
+                        <div class="empty-cart-msg">Your cart is empty. Add products to get started!</div>
+                    </div>
+
+                    <div class="cart-footer">
+                        <div class="summary-line">
+                            <span>Subtotal:</span>
+                            <span class="price-val" id="cartSubtotal">Rs. 0.00</span>
+                        </div>
+                        <div class="summary-note" id="cartDiscountNote">
+                            Member discount applied at checkout.
+                        </div>
+                        <button class="btn btn-primary btn-block btn-lg" id="btnCheckout" onclick="proceedToCheckout()">
+                            Proceed to Checkout &rarr;
+                        </button>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TAB 2: ORDER HISTORY -->
+        <!-- =================================================================== -->
+        <section class="tab-content" id="tabOrders" style="display: none;">
+            <div class="section-header">
+                <div>
+                    <h2>Customer Order History</h2>
+                    <p class="section-subtitle">Showing completed orders for current active customer</p>
+                </div>
+                <a href="/api/export/orders.csv" class="btn btn-outline" download>
+                    &#128190; Export All Orders to CSV
+                </a>
+            </div>
+
+            <div class="orders-table-wrapper" id="ordersTableWrapper">
+                <!-- Orders rendered dynamically by app.js -->
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TAB 3: ADMIN STOCK MANAGEMENT -->
+        <!-- =================================================================== -->
+        <section class="tab-content" id="tabAdmin" style="display: none;">
+            <div class="section-header">
+                <div>
+                    <h2>Admin Inventory Replenishment</h2>
+                    <p class="section-subtitle">Add stock units to existing catalogue items</p>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <form id="adminStockForm" onsubmit="handleAdminAddStock(event)">
+                    <div class="form-group">
+                        <label for="adminProductSelect">Select Product:</label>
+                        <select id="adminProductSelect" required>
+                            <!-- Populated dynamically -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="adminStockQty">Stock Units to Add:</label>
+                        <input type="number" id="adminStockQty" min="1" max="500" value="10" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">&#10010; Add Stock</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =================================================================== -->
+    <!-- MODAL 1: SWITCH OR REGISTER CUSTOMER -->
+    <!-- =================================================================== -->
+    <div class="modal-backdrop" id="customerModal" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Select or Register Customer</h3>
+                <button class="modal-close" onclick="closeCustomerModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Select Existing Customer -->
+                <h4>Switch Active Customer:</h4>
+                <div class="customer-picker-list" id="customerPickerList">
+                    <!-- Populated dynamically -->
+                </div>
+
+                <hr class="modal-divider">
+
+                <!-- Register New Customer -->
+                <h4>Register New Customer:</h4>
+                <form id="registerCustomerForm" onsubmit="handleCustomerRegister(event)">
+                    <div class="form-group">
+                        <label for="newCustName">Full Name:</label>
+                        <input type="text" id="newCustName" placeholder="e.g. Sneha Reddy" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newCustEmail">Email Address:</label>
+                        <input type="email" id="newCustEmail" placeholder="e.g. sneha@college.edu" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newCustType">Customer Tier / Type:</label>
+                        <select id="newCustType">
+                            <option value="Student">Student Customer (5% Member Discount)</option>
+                            <option value="Premium">Premium Customer (10% Member Discount)</option>
+                            <option value="Regular">Regular Customer (0% Member Discount)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Register & Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- MODAL 2: INVOICE / RECEIPT MODAL -->
+    <!-- =================================================================== -->
+    <div class="modal-backdrop" id="invoiceModal" style="display: none;">
+        <div class="modal-card modal-lg">
+            <div class="modal-header">
+                <h3>&#128196; Order Invoice & Cash Receipt</h3>
+                <button class="modal-close" onclick="closeInvoiceModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- STRUCTURED SUMMARY -->
+                <div class="invoice-summary-grid" id="invoiceSummaryGrid">
+                    <!-- Dynamically populated -->
+                </div>
+
+                <!-- RAW MONOSPACE ASCII INVOICE (Matching backend invoice() method) -->
+                <h4>Official Tax Invoice Receipt (Backend invoice()):</h4>
+                <pre class="ascii-invoice" id="asciiInvoiceText"></pre>
+
+                <div class="modal-actions">
+                    <button class="btn btn-outline" onclick="window.print()">&#128438; Print Receipt</button>
+                    <button class="btn btn-primary" onclick="closeInvoiceModal()">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PURE VANILLA JAVASCRIPT LOGIC (No external dependencies) -->
+    <script src="/static/app.js"></script>
+</body>
+</html>
