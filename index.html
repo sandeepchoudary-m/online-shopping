@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <!-- Owner: Member 6 (UI Layout) and Member 2 (Customer Profile UI) -->
 <head>
@@ -32,7 +32,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-outline" id="btnSwitchUser" onclick="openCustomerModal()">Switch / Register</button>
+            <button class="btn btn-outline" id="btnSwitchUser" onclick="openCustomerModal()">&#128100; Login / Switch</button>
             <button class="btn btn-cart-toggle" onclick="toggleCartDrawer()">
                 &#128722; Cart <span class="cart-count-badge" id="cartCountBadge">0</span>
             </button>
@@ -248,7 +248,56 @@
         </div>
     </div>
 
+        <!-- =================================================================== -->
+    <!-- MODAL 3: ADD NEW PRODUCT TO CATALOGUE -->
+    <!-- =================================================================== -->
+    <div class="modal-backdrop" id="addProductModal" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>&#10010; Add Product to Catalogue</h3>
+                <button class="modal-close" onclick="closeAddProductModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addProductForm" onsubmit="handleAddNewProduct(event)">
+                    <div class="form-group">
+                        <label for="newProdName">Product Name:</label>
+                        <input type="text" id="newProdName" placeholder="e.g. Wireless Gaming Mouse" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newProdCategory">Category:</label>
+                        <select id="newProdCategory" required>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Clothing">Clothing</option>
+                            <option value="Grocery">Grocery</option>
+                            <option value="Home & Living">Home & Living</option>
+                            <option value="Books">Books</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="newProdPrice">Price (Rs.):</label>
+                        <input type="number" id="newProdPrice" min="1" step="0.01" placeholder="e.g. 1299" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newProdStock">Initial Stock Units:</label>
+                        <input type="number" id="newProdStock" min="1" max="1000" value="15" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newProdImage">Image URL (Optional):</label>
+                        <input type="url" id="newProdImage" placeholder="https://images.unsplash.com/...">
+                        <small style="color: #64748b; font-size: 0.78rem;">Leave blank to use an auto-assigned high quality photo.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="newProdDiscount">Discount Rate (0.0 to 0.5):</label>
+                        <input type="number" id="newProdDiscount" min="0" max="0.5" step="0.05" value="0.05">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">&#10010; Add to Catalogue</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- PURE VANILLA JAVASCRIPT LOGIC (No external dependencies) -->
     <script src="app.js"></script>
 </body>
 </html>
+

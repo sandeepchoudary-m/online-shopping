@@ -1,0 +1,110 @@
+[
+    {
+        "order_id": "ORD-1001",
+        "customer_id": "C001",
+        "customer_name": "Rahul Sharma",
+        "customer_type": "Student",
+        "created_at": "2026-11-19 15:23:04",
+        "items": [
+            {
+                "product_id": "P101",
+                "name": "Dell Inspiron Laptop",
+                "category": "Electronics",
+                "unit_price": 52000.0,
+                "quantity": 1,
+                "line_subtotal": 52000.0,
+                "discount_rate": 0.05,
+                "product_discount": 2600.0,
+                "line_total": 49400.0
+            }
+        ],
+        "subtotal": 52000.0,
+        "product_discount": 2600.0,
+        "member_discount": 2470.0,
+        "taxable_amount": 46930.0,
+        "gst_amount": 8447.4,
+        "grand_total": 55377.4,
+        "invoice_text": "==================================================================\n                   SHOPEASE RETAIL PVT. LTD.                   \n                  TAX INVOICE & CASH RECEIPT                   \n==================================================================\n Order ID   : ORD-1001             Date: 2026-11-19 15:23:04\n Customer   : Rahul Sharma (C001)\n Membership : Student Member\n------------------------------------------------------------------\n Item Name             Qty   Rate        Disc        Amount      \n------------------------------------------------------------------\n Dell Inspiron Laptop  1     Rs.52000.00 -Rs.2600.00 Rs.49400.00 \n------------------------------------------------------------------\n Subtotal (Gross)                 : Rs.     52000.00\n Product-Level Discounts (-)      : Rs.      2600.00\n Member Discount (Student) (-)    : Rs.      2470.00\n Taxable Value (Net)              : Rs.     46930.00\n Goods & Services Tax (18% GST)   : Rs.      8447.40\n==================================================================\n GRAND TOTAL (INR)                : Rs.     55377.40\n==================================================================\n        Thank you for shopping with ShopEase! Visit Again!       \n=================================================================="
+    },
+    {
+        "order_id": "ORD-1002",
+        "customer_id": "C001",
+        "customer_name": "Rahul Sharma",
+        "customer_type": "Student",
+        "created_at": "2026-11-19 15:23:22",
+        "items": [
+            {
+                "product_id": "P101",
+                "name": "Dell Inspiron Laptop",
+                "category": "Electronics",
+                "unit_price": 52000.0,
+                "quantity": 1,
+                "line_subtotal": 52000.0,
+                "discount_rate": 0.05,
+                "product_discount": 2600.0,
+                "line_total": 49400.0
+            }
+        ],
+        "subtotal": 52000.0,
+        "product_discount": 2600.0,
+        "member_discount": 2470.0,
+        "taxable_amount": 46930.0,
+        "gst_amount": 8447.4,
+        "grand_total": 55377.4,
+        "invoice_text": "==================================================================\n                   SHOPEASE RETAIL PVT. LTD.                   \n                  TAX INVOICE & CASH RECEIPT                   \n==================================================================\n Order ID   : ORD-1002             Date: 2026-11-19 15:23:22\n Customer   : Rahul Sharma (C001)\n Membership : Student Member\n------------------------------------------------------------------\n Item Name             Qty   Rate        Disc        Amount      \n------------------------------------------------------------------\n Dell Inspiron Laptop  1     Rs.52000.00 -Rs.2600.00 Rs.49400.00 \n------------------------------------------------------------------\n Subtotal (Gross)                 : Rs.     52000.00\n Product-Level Discounts (-)      : Rs.      2600.00\n Member Discount (Student) (-)    : Rs.      2470.00\n Taxable Value (Net)              : Rs.     46930.00\n Goods & Services Tax (18% GST)   : Rs.      8447.40\n==================================================================\n GRAND TOTAL (INR)                : Rs.     55377.40\n==================================================================\n        Thank you for shopping with ShopEase! Visit Again!       \n=================================================================="
+    },
+    {
+        "order_id": "ORD-1003",
+        "customer_id": "C001",
+        "customer_name": "Rahul Sharma",
+        "customer_type": "Student",
+        "created_at": "2026-11-19 15:25:13",
+        "items": [
+            {
+                "product_id": "P101",
+                "name": "Dell Inspiron Laptop",
+                "category": "Electronics",
+                "unit_price": 52000.0,
+                "quantity": 1,
+                "line_subtotal": 52000.0,
+                "discount_rate": 0.05,
+                "product_discount": 2600.0,
+                "line_total": 49400.0
+            }
+        ],
+        "subtotal": 52000.0,
+        "product_discount": 2600.0,
+        "member_discount": 2470.0,
+        "taxable_amount": 46930.0,
+        "gst_amount": 8447.4,
+        "grand_total": 55377.4,
+        "invoice_text": "==================================================================\n                   SHOPEASE RETAIL PVT. LTD.                   \n                  TAX INVOICE & CASH RECEIPT                   \n==================================================================\n Order ID   : ORD-1003             Date: 2026-11-19 15:25:13\n Customer   : Rahul Sharma (C001)\n Membership : Student Member\n------------------------------------------------------------------\n Item Name             Qty   Rate        Disc        Amount      \n------------------------------------------------------------------\n Dell Inspiron Laptop  1     Rs.52000.00 -Rs.2600.00 Rs.49400.00 \n------------------------------------------------------------------\n Subtotal (Gross)                 : Rs.     52000.00\n Product-Level Discounts (-)      : Rs.      2600.00\n Member Discount (Student) (-)    : Rs.      2470.00\n Taxable Value (Net)              : Rs.     46930.00\n Goods & Services Tax (18% GST)   : Rs.      8447.40\n==================================================================\n GRAND TOTAL (INR)                : Rs.     55377.40\n==================================================================\n        Thank you for shopping with ShopEase! Visit Again!       \n=================================================================="
+    },
+    {
+        "order_id": "ORD-1004",
+        "customer_id": "C001",
+        "customer_name": "Rahul Sharma",
+        "customer_type": "Student",
+        "created_at": "2026-11-19 15:29:49",
+        "items": [
+            {
+                "product_id": "P101",
+                "name": "Dell Inspiron Laptop",
+                "category": "Electronics",
+                "unit_price": 52000.0,
+                "quantity": 1,
+                "line_subtotal": 52000.0,
+                "discount_rate": 0.05,
+                "product_discount": 2600.0,
+                "line_total": 49400.0
+            }
+        ],
+        "subtotal": 52000.0,
+        "product_discount": 2600.0,
+        "member_discount": 2470.0,
+        "taxable_amount": 46930.0,
+        "gst_amount": 8447.4,
+        "grand_total": 55377.4,
+        "invoice_text": "==================================================================\n                   SHOPEASE RETAIL PVT. LTD.                   \n                  TAX INVOICE & CASH RECEIPT                   \n==================================================================\n Order ID   : ORD-1004             Date: 2026-11-19 15:29:49\n Customer   : Rahul Sharma (C001)\n Membership : Student Member\n------------------------------------------------------------------\n Item Name             Qty   Rate        Disc        Amount      \n------------------------------------------------------------------\n Dell Inspiron Laptop  1     Rs.52000.00 -Rs.2600.00 Rs.49400.00 \n------------------------------------------------------------------\n Subtotal (Gross)                 : Rs.     52000.00\n Product-Level Discounts (-)      : Rs.      2600.00\n Member Discount (Student) (-)    : Rs.      2470.00\n Taxable Value (Net)              : Rs.     46930.00\n Goods & Services Tax (18% GST)   : Rs.      8447.40\n==================================================================\n GRAND TOTAL (INR)                : Rs.     55377.40\n==================================================================\n        Thank you for shopping with ShopEase! Visit Again!       \n=================================================================="
+    }
+]

@@ -1,4 +1,4 @@
-// Owner: Member 6 (UI logic & API integration) and Member 2 (Customer profile UI)
+﻿// Owner: Member 6 (UI logic & API integration) and Member 2 (Customer profile UI)
 /* ==========================================================================
    app.js - Plain Vanilla JavaScript Client
    - No external libraries or frameworks (No React, Vue, jQuery).
@@ -642,5 +642,60 @@ function switchTab(tabName) {
         loadOrders();
     } else if (tabName === "catalog") {
         loadProducts();
+    }
+}
+
+
+// =============================================================================
+// ADD PRODUCT TO CATALOGUE
+// =============================================================================
+
+function openAddProductModal() {
+    document.getElementById("addProductModal").style.display = "flex";
+}
+
+function closeAddProductModal() {
+    document.getElementById("addProductModal").style.display = "none";
+}
+
+async function handleAddNewProduct(event) {
+    event.preventDefault();
+    const name = document.getElementById("newProdName").value.trim();
+    const category = document.getElementById("newProdCategory").value;
+    const price = parseFloat(document.getElementById("newProdPrice").value);
+    const stock = parseInt(document.getElementById("newProdStock").value, 10);
+    let imageUrl = document.getElementById("newProdImage").value.trim();
+    const discountRate = parseFloat(document.getElementById("newProdDiscount").value || 0);
+
+    if (!imageUrl) {
+        if (category === "Electronics") imageUrl = "https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=300&q=80";
+        else if (category === "Clothing") imageUrl = "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=300&q=80";
+        else if (category === "Grocery") imageUrl = "https://images.unsplash.com/photo-1542838132-92c53300491e?w=300&q=80";
+        else imageUrl = "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=300&q=80";
+    }
+
+    try {
+        const res = await apiFetch("/api/products", {
+            method: "POST",
+            body: JSON.stringify({
+                name,
+                category,
+                price,
+                stock,
+                image_url: imageUrl,
+                discount_rate: discountRate,
+                type: category
+            })
+        });
+
+        showSuccess(res.message || "Product added to catalogue!");
+        closeAddProductModal();
+        document.getElementById("addProductForm").reset();
+
+        // Refresh categories and products
+        await loadCategories();
+        await loadProducts();
+    } catch (e) {
+        console.error("Add product error:", e);
     }
 }

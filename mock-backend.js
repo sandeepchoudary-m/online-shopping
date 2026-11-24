@@ -1,6 +1,184 @@
-// Owner: Auto-adapter for GitHub Pages Static Hosting
+﻿// Owner: Auto-adapter for GitHub Pages Static Hosting
 // Intercepts /api/ calls and serves them locally using browser localStorage
 (async function() {
+    const DEFAULT_PRODUCTS = [
+        {
+            "type": "Electronics",
+            "product_id": "P101",
+            "name": "Dell Inspiron Laptop",
+            "category": "Electronics",
+            "price": 52000.0,
+            "stock": 19,
+            "image_url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=300&q=80",
+            "keywords": ["laptop", "computer", "dell", "intel", "work"],
+            "discount_rate": 0.05,
+            "is_sellable": true,
+            "details": { "warranty_months": 24 },
+            "warranty_months": 24
+        },
+        {
+            "type": "Electronics",
+            "product_id": "P102",
+            "name": "Boat Rockerz Headphones",
+            "category": "Electronics",
+            "price": 1499.0,
+            "stock": 15,
+            "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&q=80",
+            "keywords": ["headphones", "boat", "audio", "bluetooth", "music"],
+            "discount_rate": 0.05,
+            "is_sellable": true,
+            "details": { "warranty_months": 12 },
+            "warranty_months": 12
+        },
+        {
+            "type": "Electronics",
+            "product_id": "P103",
+            "name": "Samsung Galaxy Smartphone",
+            "category": "Electronics",
+            "price": 24999.0,
+            "stock": 10,
+            "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=300&q=80",
+            "keywords": ["mobile", "phone", "samsung", "galaxy", "5g"],
+            "discount_rate": 0.05,
+            "is_sellable": true,
+            "details": { "warranty_months": 12 },
+            "warranty_months": 12
+        },
+        {
+            "type": "Clothing",
+            "product_id": "P104",
+            "name": "Casual Cotton T-Shirt",
+            "category": "Clothing",
+            "price": 799.0,
+            "stock": 20,
+            "image_url": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300&q=80",
+            "keywords": ["tshirt", "cotton", "clothing", "casual", "shirt"],
+            "discount_rate": 0.15,
+            "is_sellable": true,
+            "details": { "size": "L" },
+            "size": "L"
+        },
+        {
+            "type": "Clothing",
+            "product_id": "P105",
+            "name": "Slim Fit Denim Jeans",
+            "category": "Clothing",
+            "price": 1599.0,
+            "stock": 12,
+            "image_url": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=300&q=80",
+            "keywords": ["jeans", "denim", "pants", "clothing", "blue"],
+            "discount_rate": 0.15,
+            "is_sellable": true,
+            "details": { "size": "32" },
+            "size": "32"
+        },
+        {
+            "type": "Clothing",
+            "product_id": "P106",
+            "name": "Puma Running Shoes",
+            "category": "Clothing",
+            "price": 2899.0,
+            "stock": 6,
+            "image_url": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&q=80",
+            "keywords": ["shoes", "running", "sports", "puma", "footwear"],
+            "discount_rate": 0.15,
+            "is_sellable": true,
+            "details": { "size": "9" },
+            "size": "9"
+        },
+        {
+            "type": "Grocery",
+            "product_id": "P107",
+            "name": "Amul Fresh Full Cream Milk",
+            "category": "Grocery",
+            "price": 66.0,
+            "stock": 25,
+            "image_url": "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=300&q=80",
+            "keywords": ["milk", "dairy", "amul", "fresh", "grocery"],
+            "discount_rate": 0.3,
+            "is_sellable": true,
+            "details": { "expiry_date": "2026-11-23", "days_left": 4, "is_expired": false },
+            "expiry_date": "2026-11-23",
+            "days_left": 4,
+            "is_expired": false
+        },
+        {
+            "type": "Grocery",
+            "product_id": "P108",
+            "name": "Fortune Premium Basmati Rice (5kg)",
+            "category": "Grocery",
+            "price": 450.0,
+            "stock": 18,
+            "image_url": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300&q=80",
+            "keywords": ["rice", "grain", "basmati", "fortune", "food"],
+            "discount_rate": 0.0,
+            "is_sellable": true,
+            "details": { "expiry_date": "2027-06-30", "days_left": 223, "is_expired": false },
+            "expiry_date": "2027-06-30",
+            "days_left": 223,
+            "is_expired": false
+        },
+        {
+            "type": "Grocery",
+            "product_id": "P109",
+            "name": "Epigamia Greek Yogurt",
+            "category": "Grocery",
+            "price": 85.0,
+            "stock": 14,
+            "image_url": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=300&q=80",
+            "keywords": ["yogurt", "dairy", "epigamia", "snack"],
+            "discount_rate": 0.3,
+            "is_sellable": true,
+            "details": { "expiry_date": "2026-11-24", "days_left": 5, "is_expired": false },
+            "expiry_date": "2026-11-24",
+            "days_left": 5,
+            "is_expired": false
+        },
+        {
+            "type": "Grocery",
+            "product_id": "P110",
+            "name": "Artisan Sourdough Loaf (Sample Expired)",
+            "category": "Grocery",
+            "price": 120.0,
+            "stock": 3,
+            "image_url": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300&q=80",
+            "keywords": ["bread", "bakery", "sourdough"],
+            "discount_rate": 0.0,
+            "is_sellable": false,
+            "details": { "expiry_date": "2026-11-10", "days_left": -9, "is_expired": true },
+            "expiry_date": "2026-11-10",
+            "days_left": -9,
+            "is_expired": true
+        }
+    ];
+
+    const DEFAULT_CUSTOMERS = [
+        {
+            "customer_id": "C001",
+            "name": "Rahul Sharma",
+            "email": "rahul@student.edu",
+            "type": "Student",
+            "discount_rate": 0.05,
+            "discount_percent": 5
+        },
+        {
+            "customer_id": "C002",
+            "name": "Priya Singh",
+            "email": "priya.singh@gmail.com",
+            "type": "Premium",
+            "discount_rate": 0.1,
+            "discount_percent": 10
+        },
+        {
+            "customer_id": "C003",
+            "name": "Amit Patel",
+            "email": "amit.patel@yahoo.com",
+            "type": "Regular",
+            "discount_rate": 0.0,
+            "discount_percent": 0
+        }
+    ];
+
     let productsDB = [];
     let customersDB = [];
     let ordersDB = [];
@@ -23,44 +201,23 @@
 
     // Load initial seeds
     async function initDB() {
-        if (!localStorage.getItem('shopease_products')) {
-            try {
-                const pRes = await fetch('data/products.json');
-                const pData = await pRes.json();
-                productsDB = pData;
-                setStorage('products', productsDB);
-            } catch(e) {
-                productsDB = [];
-            }
+        const storedProducts = getStorage('products', null);
+        if (!storedProducts || storedProducts.length === 0 || !storedProducts[0].image_url) {
+            productsDB = DEFAULT_PRODUCTS;
+            setStorage('products', productsDB);
         } else {
-            productsDB = getStorage('products', []);
+            productsDB = storedProducts;
         }
 
-        if (!localStorage.getItem('shopease_customers')) {
-            try {
-                const cRes = await fetch('data/customers.json');
-                const cData = await cRes.json();
-                customersDB = cData;
-                setStorage('customers', customersDB);
-            } catch(e) {
-                customersDB = [];
-            }
+        const storedCustomers = getStorage('customers', null);
+        if (!storedCustomers || storedCustomers.length === 0) {
+            customersDB = DEFAULT_CUSTOMERS;
+            setStorage('customers', customersDB);
         } else {
-            customersDB = getStorage('customers', []);
+            customersDB = storedCustomers;
         }
 
-        if (!localStorage.getItem('shopease_orders')) {
-            try {
-                const oRes = await fetch('data/orders.json');
-                const oData = await oRes.json();
-                ordersDB = oData;
-                setStorage('orders', ordersDB);
-            } catch(e) {
-                ordersDB = [];
-            }
-        } else {
-            ordersDB = getStorage('orders', []);
-        }
+        ordersDB = getStorage('orders', []);
     }
 
     const initPromise = initDB();
@@ -105,8 +262,8 @@
             return jsonRes({ error: 'Customer not found' }, 400);
         }
 
-        // 3. Register
-        if (cleanPath === '/api/customers/register' && method === 'POST') {
+        // 3. Register Customer
+        if ((cleanPath === '/api/customers/register' || cleanPath === '/api/customers') && method === 'POST') {
             const nextId = 'C' + String(customersDB.length + 1).padStart(3, '0');
             const discount_rate = body.type === 'Premium' ? 0.1 : (body.type === 'Student' ? 0.05 : 0.0);
             const newCust = {
@@ -119,7 +276,7 @@
             };
             customersDB.push(newCust);
             setStorage('customers', customersDB);
-            return jsonRes({ message: 'Customer registered successfully', customer: newCust });
+            return jsonRes({ message: 'Customer registered successfully!', customer: newCust });
         }
 
         // 4. Categories
@@ -128,12 +285,52 @@
             return jsonRes(cats);
         }
 
-        // 5. Products list
+        // 5. Products list (with optional ?q= & ?category= filtering)
         if (cleanPath.startsWith('/api/products') && method === 'GET') {
-            return jsonRes(productsDB);
+            const urlObj = new URL(u, window.location.origin);
+            const q = (urlObj.searchParams.get('q') || '').toLowerCase().trim();
+            const cat = urlObj.searchParams.get('category') || '';
+
+            let result = productsDB;
+            if (cat && cat !== 'All') {
+                result = result.filter(p => p.category.toLowerCase() === cat.toLowerCase());
+            }
+            if (q) {
+                result = result.filter(p => {
+                    const matchName = p.name.toLowerCase().includes(q);
+                    const matchCat = p.category.toLowerCase().includes(q);
+                    const matchKeywords = (p.keywords || []).some(k => k.toLowerCase().includes(q));
+                    return matchName || matchCat || matchKeywords;
+                });
+            }
+            return jsonRes(result);
         }
 
-        // 6. Cart view
+        // 6. Add new product to catalogue (POST /api/products)
+        if (cleanPath === '/api/products' && method === 'POST') {
+            if (!body.name || !body.price || !body.category) {
+                return jsonRes({ error: 'Missing required product fields (name, category, price)' }, 400);
+            }
+            const nextPid = 'P' + (100 + productsDB.length + 1);
+            const newProd = {
+                type: body.type || 'Electronics',
+                product_id: nextPid,
+                name: body.name.trim(),
+                category: body.category.trim(),
+                price: parseFloat(body.price),
+                stock: parseInt(body.stock || 10, 10),
+                image_url: body.image_url || 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=300&q=80',
+                keywords: body.keywords || [body.name.toLowerCase()],
+                discount_rate: parseFloat(body.discount_rate || 0.0),
+                is_sellable: true,
+                details: {}
+            };
+            productsDB.push(newProd);
+            setStorage('products', productsDB);
+            return jsonRes({ message: 'Product added to catalogue successfully!', product: newProd });
+        }
+
+        // 7. Cart view
         if (cleanPath === '/api/cart' && method === 'GET') {
             const cartItems = cartsDB[customerId] || [];
             let subtotal = 0;
@@ -155,7 +352,8 @@
                     discount_rate: disc_rate,
                     line_subtotal: line_subtotal,
                     product_discount: prod_discount,
-                    line_total: line_total
+                    line_total: line_total,
+                    image_url: prod.image_url || ''
                 };
             });
             return jsonRes({
@@ -166,12 +364,13 @@
             });
         }
 
-        // 7. Cart Add
+        // 8. Cart Add
         if (cleanPath === '/api/cart/add' && method === 'POST') {
             if (!cartsDB[customerId]) cartsDB[customerId] = [];
             const prod = productsDB.find(p => p.product_id === body.product_id);
             if (!prod) return jsonRes({ error: 'Product not found' }, 400);
-            const qty = parseInt(body.quantity || 1, 10);
+            const qty = parseInt(body.qty !== undefined ? body.qty : (body.quantity !== undefined ? body.quantity : 1), 10);
+            if (qty <= 0) return jsonRes({ error: 'Quantity must be positive' }, 400);
             if (prod.stock < qty) return jsonRes({ error: 'Insufficient stock available' }, 400);
 
             const existing = cartsDB[customerId].find(i => i.product_id === body.product_id);
@@ -187,11 +386,11 @@
             return jsonRes({ message: 'Item added to cart' });
         }
 
-        // 8. Cart Update
+        // 9. Cart Update
         if (cleanPath === '/api/cart/update' && method === 'POST') {
             if (!cartsDB[customerId]) cartsDB[customerId] = [];
             const prod = productsDB.find(p => p.product_id === body.product_id);
-            const qty = parseInt(body.quantity, 10);
+            const qty = parseInt(body.qty !== undefined ? body.qty : (body.quantity !== undefined ? body.quantity : 1), 10);
             if (qty <= 0) {
                 cartsDB[customerId] = cartsDB[customerId].filter(i => i.product_id !== body.product_id);
             } else {
@@ -203,23 +402,51 @@
             return jsonRes({ message: 'Cart updated' });
         }
 
-        // 9. Cart Remove
+        // 10. Cart Remove (handles either decrement if qty provided or full removal)
         if (cleanPath === '/api/cart/remove' && method === 'POST') {
             if (cartsDB[customerId]) {
-                cartsDB[customerId] = cartsDB[customerId].filter(i => i.product_id !== body.product_id);
+                const qtyToRemove = body.qty !== undefined ? parseInt(body.qty, 10) : (body.quantity !== undefined ? parseInt(body.quantity, 10) : null);
+                if (qtyToRemove && qtyToRemove > 0) {
+                    const existing = cartsDB[customerId].find(i => i.product_id === body.product_id);
+                    if (existing) {
+                        existing.quantity -= qtyToRemove;
+                        if (existing.quantity <= 0) {
+                            cartsDB[customerId] = cartsDB[customerId].filter(i => i.product_id !== body.product_id);
+                        }
+                    }
+                } else {
+                    cartsDB[customerId] = cartsDB[customerId].filter(i => i.product_id !== body.product_id);
+                }
                 setStorage('carts', cartsDB);
             }
             return jsonRes({ message: 'Item removed from cart' });
         }
 
-        // 10. Cart Clear
+        // 11. Cart Clear
         if (cleanPath === '/api/cart/clear' && method === 'POST') {
             cartsDB[customerId] = [];
             setStorage('carts', cartsDB);
             return jsonRes({ message: 'Cart cleared' });
         }
 
-        // 11. Checkout
+        // 12. Admin Stock Replenishment
+        if (cleanPath === '/api/admin/stock' && method === 'POST') {
+            const prod = productsDB.find(p => p.product_id === body.product_id);
+            if (!prod) return jsonRes({ error: 'Product not found' }, 400);
+            const qty = parseInt(body.qty || body.quantity || 0, 10);
+            if (qty <= 0) return jsonRes({ error: 'Quantity must be positive' }, 400);
+
+            prod.stock += qty;
+            prod.is_sellable = true;
+            setStorage('products', productsDB);
+            return jsonRes({
+                message: `Successfully added ${qty} units to ${prod.name}! New stock: ${prod.stock}`,
+                product_id: prod.product_id,
+                new_stock: prod.stock
+            });
+        }
+
+        // 13. Checkout
         if (cleanPath === '/api/checkout' && method === 'POST') {
             const cartItems = cartsDB[customerId] || [];
             if (cartItems.length === 0) return jsonRes({ error: 'Cart is empty' }, 400);
@@ -316,7 +543,7 @@
             });
         }
 
-        // 12. Orders
+        // 14. Orders
         if (cleanPath === '/api/orders' && method === 'GET') {
             const customerOrders = ordersDB.filter(o => o.customer_id === customerId);
             return jsonRes(customerOrders);
